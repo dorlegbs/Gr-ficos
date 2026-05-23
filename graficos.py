@@ -49,17 +49,17 @@ if "sexo" in df.columns:
 
 # Gráfico 3 - Direita x Centro x Esquerda
 
-if "ideologia" in df.columns:
+if "partido" in df.columns:
 
     st.subheader("Comparação Direita x Centro x Esquerda")
 
-    ideologia_count = df["ideologia"].value_counts()
+    ideologia_count = df["partido"].value_counts()
 
     fig, ax = plt.subplots(figsize=(8, 5))
 
     ax.plot(
-        ideologia_count.index,
-        ideologia_count.values,
+        partido_count.index,
+        partido_count.values,
         marker="o"
     )
 

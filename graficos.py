@@ -13,13 +13,13 @@ df = pd.read_csv("deputados_2018.csv")
 
 # Gráfico 1 - Deputados por partido
 
-    if "partido" in df.columns:
-        st.subheader("Deputados por Partido")
+if "partido" in df.columns:
+    st.subheader("Deputados por Partido")
 
-        partido_count = df["partido"].value_counts().head(10)
+partido_count = df["partido"].value_counts().head(10)
 
-        fig, ax = plt.subplots(figsize=(10, 5))
-        partido_count.plot(kind="bar", ax=ax)
+fig, ax = plt.subplots(figsize=(10, 5))
+partido_count.plot(kind="bar", ax=ax)
 
 # Gráfico 2 - Homens x Mulheres
 

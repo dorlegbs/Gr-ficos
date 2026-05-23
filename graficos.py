@@ -19,7 +19,7 @@ with col1:
 
     if "partido" in df.columns:
 
-        st.subheader("Deputados por Categoria")
+        st.subheader("Deputados por Partido")
 
         partido_count = df["partido"].value_counts().head(10)
 

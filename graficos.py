@@ -69,7 +69,7 @@ if "categoria" in df.columns:
 
     st.subheader("Direita x Centro x Esquerda")
 
-    partido_count = df["categoria"].value_counts()
+    categoria_count = df["categoria"].value_counts()
 
     fig, ax = plt.subplots(figsize=(10, 5))
 

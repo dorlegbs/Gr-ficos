@@ -1,2 +1,2 @@
-# Gr-ficos
+# Graficos
 Gráficos

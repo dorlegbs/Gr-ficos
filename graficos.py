@@ -49,8 +49,8 @@ with col2:
         st.subheader("Homens x Mulheres")
 
         sexo_count = df["sexo"].replace({
-    0: "Mulheres",
-    1: "Homens"
+    0: "Homens",
+    1: "Mulheres"
 }).value_counts()
 
         fig, ax = plt.subplots(figsize=(6, 6))

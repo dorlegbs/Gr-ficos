@@ -2,68 +2,88 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-
-st.set_page_config(page_title="Dashboard Eleições 2018", layout="wide")
+st.set_page_config(
+    page_title="Dashboard Eleições 2018",
+    layout="wide"
+)
 
 st.title("Eleições 2018")
-st.markdown("Visualização simples dos dados dos deputados de 2018.")
 
 df = pd.read_csv("deputados_2018.csv")
 
+col1, col2 = st.columns(2)
+
 # Gráfico 1 - Deputados por partido
 
-if "partido" in df.columns:
+with col1:
 
-    st.subheader("Deputados por Partido")
+    if "partido" in df.columns:
 
-    partido_count = df["partido"].value_counts().head(10)
+        st.subheader("🏛️ Deputados por Partido")
 
-    fig, ax = plt.subplots(figsize=(10, 5))
+        partido_count = df["partido"].value_counts().head(10)
 
-    partido_count.plot(kind="bar", ax=ax)
+        fig, ax = plt.subplots(figsize=(8, 5))
 
-    ax.set_xlabel("Partido")
-    ax.set_ylabel("Quantidade")
+        ax.bar(
+            partido_count.index,
+            partido_count.values,
+            color="royalblue"
+        )
 
-    st.pyplot(fig)
+        ax.set_xlabel("Partido")
+        ax.set_ylabel("Quantidade")
+
+        ax.grid(axis="y", linestyle="--", alpha=0.5)
+
+        plt.xticks(rotation=45)
+
+        st.pyplot(fig)
 
 # Gráfico 2 - Homens x Mulheres
 
-if "sexo" in df.columns:
+with col2:
 
-    st.subheader("Deputados Homens x Mulheres")
+    if "sexo" in df.columns:
 
-    sexo_count = df["sexo"].value_counts()
+        st.subheader("👥 Homens x Mulheres")
 
-    fig, ax = plt.subplots(figsize=(6, 6))
+        sexo_count = df["sexo"].value_counts()
 
-    ax.pie(
-        sexo_count.values,
-        labels=sexo_count.index,
-        autopct="%1.1f%%"
-    )
+        fig, ax = plt.subplots(figsize=(6, 6))
 
-    ax.set_title("Distribuição por Sexo")
+        cores = ["deeppink", "dodgerblue"]
 
-    st.pyplot(fig)
+        ax.pie(
+            sexo_count.values,
+            labels=sexo_count.index,
+            autopct="%1.1f%%",
+            colors=cores
+        )
+
+        st.pyplot(fig)
 
 # Gráfico 3 - Direita x Centro x Esquerda
 
 if "partido" in df.columns:
 
-    st.subheader("Comparação Direita x Centro x Esquerda")
+    st.subheader("Direita x Centro x Esquerda")
 
-    ideologia_count = df["partido"].value_counts()
+    partido_count = df["partido"].value_counts()
 
-    fig, ax = plt.subplots(figsize=(8, 5))
+    fig, ax = plt.subplots(figsize=(10, 5))
 
-    ax.plot(
+    cores = ["red", "gray", "green"]
+
+    ax.bar(
         partido_count.index,
         partido_count.values,
-        marker="o"
+        color=cores
     )
 
-    ax.set_xlabel("Posicionamento")
+    ax.set_xlabel("Partido")
     ax.set_ylabel("Quantidade")
+
+    ax.grid(axis="y", linestyle="--", alpha=0.5)
 
     st.pyplot(fig)

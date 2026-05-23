@@ -19,7 +19,7 @@ with col1:
 
     if "partido" in df.columns:
 
-        st.subheader("🏛️ Deputados por Partido")
+        st.subheader("Deputados por Categoria")
 
         partido_count = df["partido"].value_counts().head(10)
 
@@ -46,13 +46,13 @@ with col2:
 
     if "sexo" in df.columns:
 
-        st.subheader("👥 Homens x Mulheres")
+        st.subheader("Homens x Mulheres")
 
         sexo_count = df["sexo"].value_counts()
 
         fig, ax = plt.subplots(figsize=(6, 6))
 
-        cores = ["deeppink", "dodgerblue"]
+        cores = ["dodgerblue", "deeppink"]
 
         ax.pie(
             sexo_count.values,
@@ -65,24 +65,24 @@ with col2:
 
 # Gráfico 3 - Direita x Centro x Esquerda
 
-if "partido" in df.columns:
+if "categoria" in df.columns:
 
     st.subheader("Direita x Centro x Esquerda")
 
-    partido_count = df["partido"].value_counts()
+    partido_count = df["categoria"].value_counts()
 
     fig, ax = plt.subplots(figsize=(10, 5))
 
-    cores = ["red", "gray", "green"]
+    cores = ["blue", "orange", "green"]
 
     ax.bar(
-        partido_count.index,
-        partido_count.values,
+        categoria_count.index,
+        categoria_count.values,
         color=cores
     )
 
-    ax.set_xlabel("Partido")
-    ax.set_ylabel("Quantidade")
+    ax.set_xlabel("Categoria")
+    ax.set_ylabel("Número de Deputados")
 
     ax.grid(axis="y", linestyle="--", alpha=0.5)
 
